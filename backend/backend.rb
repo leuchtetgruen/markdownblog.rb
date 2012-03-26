@@ -15,6 +15,7 @@ end
 class MarkdownBlogBackend < Sinatra::Base
   set :static, true
   set :public_folder, File.dirname(__FILE__) + '/public'
+  set :bind, '0.0.0.0'
 
   @config = YAML.load_file('config.yml')
   
