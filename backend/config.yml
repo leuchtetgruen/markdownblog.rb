@@ -1,0 +1,13 @@
+--- 
+dropbox: 
+  app_key: 
+  app_secret: 
+  path: /path_in_your_dbox
+rss: 
+  author: Your name
+  title: The blogs name
+  description: a description
+url: http://yourblog.com
+backend: 
+  username: admin
+  password: admin

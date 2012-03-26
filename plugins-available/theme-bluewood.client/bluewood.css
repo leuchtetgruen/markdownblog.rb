@@ -1,0 +1,100 @@
+html, body {
+  height: 100%; }
+
+body {
+  font-family: Caudex;
+  background-color: #fff;
+  background-image: url(http://subtlepatterns.com/patterns/daimond_eyes.png);
+  color: #000; }
+
+#container {
+  min-height: 100%; }
+
+article {
+  color: #000;
+  padding: 20px;
+  font-size: 16px;
+  overflow: auto;
+  padding-bottom: 50px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto; }
+  article a, article a:visited {
+    text-decoration: none;
+    color: #004080; }
+    article a h2, article a:visited h2 {
+      color: #004080;
+      font-family: 'Magra';
+      font-weight: 400; }
+  article h1, article h2, article h3 {
+    font-family: 'Magra';
+    font-weight: 400;
+    color: #004080; }
+
+pre > code {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  margin-left: 3em;
+  padding-left: 1em;
+  border-left: 3px solid #aaa;
+  display: block;
+  background-color: rgba(240, 240, 240, 0.5); }
+
+header {
+  background-image: url(http://subtlepatterns.com/patterns/tileable_wood_texture.png);
+  color: #fff;
+  width: 100%;
+  padding: 20px;
+  border-bottom: 10px solid rgba(255, 255, 255, 0.5); }
+  header a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7); }
+  header h1 {
+    color: rgba(0, 0, 0, 0.75);
+    font-weight: 400;
+    font-family: 'Lato';
+    text-transform: uppercase;
+    font-size: 36px;
+    max-width: 840px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; }
+
+.updated {
+  color: #aaa;
+  margin-bottom: 10px; }
+
+.description {
+  margin-bottom: 10px; }
+
+.nav_link {
+  padding-top: 10px; }
+
+.index-meta {
+  border-top: 1px dotted #ccc;
+  margin-top: 10px;
+  padding-top: 5px; }
+
+footer {
+  font-family: 'Lato';
+  background-image: url(http://subtlepatterns.com/patterns/tileable_wood_texture.png);
+  border-top: 10px solid rgba(255, 255, 255, 0.5);
+  color: #000;
+  position: relative;
+  margin-top: -30px;
+  height: 30px;
+  clear: both;
+  padding-top: 10px;
+  text-align: center;
+  vertical-align: middle; }
+  footer a, footer a:visited {
+    color: #000; }
+
+/* additions for pagebar plugin */
+#page_bar {
+  font-family: Magra;
+  color: #000;
+  font-size: 14px; }
+  #page_bar a {
+    color: #000;
+    text-decoration: none; }
