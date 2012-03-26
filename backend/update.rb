@@ -76,7 +76,11 @@ class Updater
 
         # 3- set options for publishing
         options['publish'] = (basename =~ /-published.mdown$/)
-        options['title'] = html.match(/<h1>(.*)<\/h1>/)[1] or "No title found"
+        if html.match(/<h1>(.*)<\/h1>/) then
+          options['title'] = html.match(/<h1>(.*)<\/h1>/)[1] or "No title found"
+        else
+          options['title'] = "No title found"
+        end
         options['updated'] = entry.modified
         begin
           options['description'] = (html.match(/<p>(.*)<\/p>/)[1].gsub(/<\/?[^>]*>/, '').gsub(/\n\n+/, "\n").gsub(/^\n|\n$/, '') or nil) # replace tags and linebreaks
