@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require 'daemons'
+
+pwd = Dir.pwd + "/backend"
+Daemons.run_proc('server', {:dir_mode => :normal, :dir => "pids"}) do
+  Dir.chdir(pwd)
+  exec "ruby backend.rb"
+end
