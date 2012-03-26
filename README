@@ -1,3 +1,13 @@
 This is markdownblog, a bloggingsoftware based on markdown and dropbox.
 
-Read more about how to get this up and running : <http://leuchtetgruen.de/markdownblog/index.php#!up-and-running>
+Here's how to get started:
+
+- Download into empty folder in /var/www (or whereever your webserver resides)
+- Run Bundler to install dependencies
+- Run server --start
+- Visit yourserver:4567 and login as admin (pw:admin)
+- Configure your blog
+- Click update
+- You're ready to go
+
+contact me (@kenny1987) on twitter for questions
