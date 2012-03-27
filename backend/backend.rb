@@ -233,6 +233,11 @@ class MarkdownBlogBackend < Sinatra::Base
     d = DropboxSync.new(c['dropbox'])
     d.download("#{c['dropbox']['path']}/#{params[:filename]}")
   end
+  
+  get '/visit' do
+    c = YAML.load_file('config.yml')
+    redirect c['url']
+  end
 end
 
 MarkdownBlogBackend.run!
