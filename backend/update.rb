@@ -109,7 +109,7 @@ class Updater
       call_plugin_method_with_options("downloaded_file_with_options", options)
     end
 
-    sorted_file_options = file_options.select { |options| options['publish'] }.sort_by { |option| option['updated'] }
+    sorted_file_options = file_options.select { |options| options['publish'] }.sort_by { |option| option['updated'] }.reverse
 
     # C - generate mapping
     name_file_mapping = Hash[file_options.map do |file|
