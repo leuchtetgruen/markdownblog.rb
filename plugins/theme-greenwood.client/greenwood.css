@@ -30,6 +30,12 @@ article {
     font-family: 'Magra';
     font-weight: 400;
     color: #36a936; }
+  article h1 {
+    font-size: 2em; }
+  article h2 {
+    font-size: 1.5em; }
+  article h3 {
+    font-size: 1.25em; }
 
 pre > code {
   padding-top: 0.5em;
