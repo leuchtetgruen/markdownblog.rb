@@ -6,7 +6,7 @@ class Googlesitemap
       
       files = options[:options]
       files.each do |file|
-        f.puts file['url'].gsub(/\/index.*/, "/plugins/googlesitemap.server/search-engine.php?name=#{file['hash']}" )
+        f.puts file['url'].gsub(/\/index.*/, "/plugins/googlesitemap.server/search-engine.php?post=#{file['hash']}" )
       end
     end
   end
