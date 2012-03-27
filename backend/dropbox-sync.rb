@@ -1,4 +1,5 @@
 require 'dropbox'
+require 'pathname'
 
 class DropboxSync
   @@AUTHORIZED_SERIALIZED_FILENAME = 'cache/authorized_dropbox_session.txt'
@@ -47,5 +48,13 @@ class DropboxSync
     else
       return content
     end
+  end
+  
+  def upload(path, content)  
+    tf = Tempfile.new(File.basename(path))
+    tf.write(content)
+    tf.close    
+    @session.upload(tf.path, Pathname.new(path).split[0].to_s, {as: File.basename(path)})
+    tf.unlink
   end
 end

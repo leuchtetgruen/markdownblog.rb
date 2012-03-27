@@ -30,6 +30,10 @@ function showPlugins() {
 	$.get('/plugins', showData);
 }
 
+function showEditor() {
+	$.get('/editor.html', showData);
+}
+
 function update() {
 	showData('Updating your blog... (This might take a while)');
 	$.get('/update_blog', showData);

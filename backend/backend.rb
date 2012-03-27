@@ -3,6 +3,8 @@ require 'yaml'
 require 'sinatra/base'
 require './hash_config'
 require './update'
+require './dropbox-sync'
+require 'rdiscount'
 
 module YAML
   def self.save_file(obj, file_name)
@@ -197,6 +199,39 @@ class MarkdownBlogBackend < Sinatra::Base
     cmd = "mv ../plugins-available/#{params[:name]} ../plugins/#{params[:name]}"
     system(cmd)
     redirect "admin.html"    
+  end
+  
+  post '/preview' do
+    md = RDiscount.new(params[:data])
+    md.to_html
+  end
+  
+  post '/upload' do
+    c = YAML.load_file('config.yml')    
+    d = DropboxSync.new(c['dropbox'])
+
+    d.upload("#{c['dropbox']['path']}/#{params[:filename]}", params[:data])  
+  end
+  
+  get '/list' do
+    c = YAML.load_file('config.yml')    
+    d = DropboxSync.new(c['dropbox']) do |url|
+      return "Please visit the <a href='#{url}' target='_blank'>Dropbox authorization page</a>, so this software can access your dropbox."
+    end
+    
+    s  = "<ul>\r\n"
+    d.list(c['dropbox']['path']) do |entry|
+      f = File.basename(entry.path)
+      s += "<li><a href='#' onclick='loadFile(\"#{f}\");'>#{f}</a></li>\r\n" if (f =~ /\.mdown/)
+    end
+    s += "</ul>\r\n"
+    s
+  end
+  
+  get '/load' do
+    c = YAML.load_file('config.yml')    
+    d = DropboxSync.new(c['dropbox'])
+    d.download("#{c['dropbox']['path']}/#{params[:filename]}")
   end
 end
 

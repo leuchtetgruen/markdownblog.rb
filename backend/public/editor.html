@@ -1,0 +1,61 @@
+<script type="text/javascript" src="markitup/jquery.markitup.js"></script>
+<script type="text/javascript" src="markitup/sets/markdown/set.js"></script>
+<link rel="stylesheet" type="text/css" href="markitup/skins/simple/style.css" />
+<link rel="stylesheet" type="text/css" href="markitup/sets/markdown/style.css" />
+
+<script type="text/javascript" >
+	function loadFile(filename) {
+		$('#filename').val(filename);
+		$('#file_list').hide();
+		$('#editor').empty();
+		if (filename) {
+			$.get('/load?filename=' + filename, function(data) {
+				$('#editor_area').show();						
+				$('#editor').html(data);
+				$("#editor").markItUp(mySettings);
+			});			
+		}
+		else {
+			$('#editor_area').show();						
+			$('#editor').html("::pretty=>name_of_the_post");
+			$("#editor").markItUp(mySettings);
+		}
+	}
+	function listFiles() {
+		$('#editor_area').hide();
+		$('#file_list').html("Please wait for the list of posts to be loaded...");
+		$.get('/list', function(data) {
+			$('#file_list').show();
+			$('#file_list').html("<h1>List of posts</h1>" + data);
+			list = $('#file_list ul');
+			li = $('<li/>').appendTo(list);
+			a = $('<a/>').attr("href", "#").html("New post").appendTo(li);
+			a.click(function() {
+				loadFile("");
+			});
+		});
+	}
+	function uploadPost() {
+		if ($('#filename').val()) {
+			$.post("/upload", {
+				filename: $('#filename').val(),
+				data: $('#editor').val()
+			}, function(data) {
+				alert("Done uploading. Remember to update your blog.");
+				listFiles();
+			});
+		}
+	}
+	
+	$(document).ready(function() {
+		$('#editor_area').hide();
+		listFiles();
+	});
+</script>
+<div id="file_list">
+
+</div>
+<div id="editor_area">
+	Filename : <input type="text" id="filename" /><input type="button" value="Upload" onclick="uploadPost();"/>
+	<textarea id="editor"></textarea>
+</div>
