@@ -129,7 +129,7 @@ class Updater
       maker.channel.link = @config['url']
       maker.channel.description = @config['rss']['description'] if @config['rss']['description']
 
-      sorted_file_options.each do |file|
+      sorted_file_options.reverse.each do |file|
         maker.items.new_item do |item|
           item.link = file['url']
           item.title = file['title']
