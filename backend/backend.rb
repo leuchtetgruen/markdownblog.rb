@@ -190,13 +190,14 @@ class MarkdownBlogBackend < Sinatra::Base
   end
   
   get '/delete_plugin' do
-    cmd = "mv ../plugins/#{params[:name]} ../plugins-available/#{params[:name]}"
+    return if (params[:name] =~ /\.\./)
+    cmd = "rm -rf ../plugins/#{params[:name]}"
     system(cmd)
     redirect "admin.html"
   end
   
   get '/add_plugin' do
-    cmd = "mv ../plugins-available/#{params[:name]} ../plugins/#{params[:name]}"
+    cmd = "cp -R ../plugins-available/#{params[:name]} ../plugins/#{params[:name]}"
     system(cmd)
     redirect "admin.html"    
   end
